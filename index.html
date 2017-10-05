@@ -74,7 +74,7 @@
 </dd></dl>
 
 <p><cite>default_executor()</cite> reads your <cite>pywren_config</cite> and returns <cite>executor</cite> object that&#8217;s ready to go.
-We can use this <cite>executor</cite> to run <cite>map</cite></p>
+We can use this <cite>executor</cite> to run <cite>map</cite>, which applies a function to a list of data in the cloud.</p>
 <dl class="method">
 <dt id="pywren.executor.Executor.map">
 <code class="descclassname">Executor.</code><code class="descname">map</code><span class="sig-paren">(</span><em>func</em>, <em>iterdata</em>, <em>extra_env=None</em>, <em>extra_meta=None</em>, <em>invoke_pool_threads=64</em>, <em>data_all_as_one=True</em>, <em>use_cached_runtime=True</em>, <em>overwrite_invoke_args=None</em>, <em>exclude_modules=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.executor.Executor.map" title="Permalink to this definition">¶</a></dt>
@@ -103,6 +103,13 @@ We can use this <cite>executor</cite> to run <cite>map</cite></p>
 </tr>
 </tbody>
 </table>
+<dl class="docutils">
+<dt>Usage::</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">futures</span> <span class="o">=</span> <span class="n">pwex</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="n">data_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -112,7 +119,7 @@ We can use this <cite>executor</cite> to run <cite>map</cite></p>
 <dt id="pywren.wait.wait">
 <code class="descclassname">pywren.wait.</code><code class="descname">wait</code><span class="sig-paren">(</span><em>fs</em>, <em>return_when=1</em>, <em>THREADPOOL_SIZE=64</em>, <em>WAIT_DUR_SEC=5</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.wait.wait" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wait for the Future instances <cite>fs</cite> to complete. Returns a 2-tuple of
-sets. The first set contains the futures that completed
+lists. The first lists contains the futures that completed
 (finished or cancelled) before the wait completed. The second
 contains uncompleted futures.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -127,7 +134,7 @@ contains uncompleted futures.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of futures</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of completed futures, list of uncompleted futures.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple of list</p>
@@ -137,6 +144,7 @@ contains uncompleted futures.</p>
 </table>
 </dd></dl>
 
+<p>If you want to get all of the results, you can simply call <cite>get_all_results</cite></p>
 <dl class="function">
 <dt id="pywren.wren.get_all_results">
 <code class="descclassname">pywren.wren.</code><code class="descname">get_all_results</code><span class="sig-paren">(</span><em>fs</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.wren.get_all_results" title="Permalink to this definition">¶</a></dt>
