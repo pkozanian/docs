@@ -45,122 +45,106 @@
             
   <div class="section" id="documentation">
 <h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-pywren.ec2standalone">
-<span id="pywren-ec2standalone-module"></span><h2>pywren.ec2standalone module<a class="headerlink" href="#module-pywren.ec2standalone" title="Permalink to this headline">¶</a></h2>
-<p>Code to handle EC2 stand-alone instances</p>
-<dl class="function">
-<dt id="pywren.ec2standalone.b64s">
-<code class="descclassname">pywren.ec2standalone.</code><code class="descname">b64s</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.ec2standalone.b64s" title="Permalink to this definition">¶</a></dt>
-<dd><p>Base-64 encode a string and return a string</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="pywren.ec2standalone.create_instance_profile">
-<code class="descclassname">pywren.ec2standalone.</code><code class="descname">create_instance_profile</code><span class="sig-paren">(</span><em>instance_profile_name</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.ec2standalone.create_instance_profile" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pywren.ec2standalone.launch_instances">
-<code class="descclassname">pywren.ec2standalone.</code><code class="descname">launch_instances</code><span class="sig-paren">(</span><em>number</em>, <em>tgt_ami</em>, <em>aws_region</em>, <em>my_aws_key</em>, <em>instance_type</em>, <em>instance_name</em>, <em>instance_profile_name</em>, <em>sqs_queue_name</em>, <em>default_volume_size=100</em>, <em>max_idle_time=60</em>, <em>idle_terminate_granularity=600</em>, <em>pywren_git_branch='master'</em>, <em>pywren_git_commit=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.ec2standalone.launch_instances" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pywren.ec2standalone.list_instances">
-<code class="descclassname">pywren.ec2standalone.</code><code class="descname">list_instances</code><span class="sig-paren">(</span><em>aws_region</em>, <em>instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.ec2standalone.list_instances" title="Permalink to this definition">¶</a></dt>
-<dd><p>List all instances whose names match the main</p>
-<p>Returns [(name, instance_object)]</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="pywren.ec2standalone.prettyprint_instances">
-<code class="descclassname">pywren.ec2standalone.</code><code class="descname">prettyprint_instances</code><span class="sig-paren">(</span><em>inst_list</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.ec2standalone.prettyprint_instances" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pywren.ec2standalone.sd">
-<code class="descclassname">pywren.ec2standalone.</code><code class="descname">sd</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.ec2standalone.sd" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the file in the standalone dir</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="pywren.ec2standalone.tags_to_dict">
-<code class="descclassname">pywren.ec2standalone.</code><code class="descname">tags_to_dict</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.ec2standalone.tags_to_dict" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pywren.ec2standalone.terminate_instances">
-<code class="descclassname">pywren.ec2standalone.</code><code class="descname">terminate_instances</code><span class="sig-paren">(</span><em>instance_list</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.ec2standalone.terminate_instances" title="Permalink to this definition">¶</a></dt>
-<dd><p># FIXME delete individuals</p>
-</dd></dl>
-
-</div>
-<div class="section" id="module-pywren.executor">
-<span id="pywren-executor"></span><h2>pywren.executor<a class="headerlink" href="#module-pywren.executor" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pywren.executor.Executor">
-<em class="property">class </em><code class="descclassname">pywren.executor.</code><code class="descname">Executor</code><span class="sig-paren">(</span><em>invoker</em>, <em>config</em>, <em>job_max_runtime</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.executor.Executor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p>Theoretically will allow for cross-AZ invocations</p>
-<dl class="staticmethod">
-<dt id="pywren.executor.Executor.agg_data">
-<em class="property">static </em><code class="descname">agg_data</code><span class="sig-paren">(</span><em>data_strs</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.executor.Executor.agg_data" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="executor">
+<h2>Executor<a class="headerlink" href="#executor" title="Permalink to this headline">¶</a></h2>
 <dl class="method">
-<dt id="pywren.executor.Executor.call_async">
-<code class="descname">call_async</code><span class="sig-paren">(</span><em>func</em>, <em>data</em>, <em>extra_env=None</em>, <em>extra_meta=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.executor.Executor.call_async" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pywren.executor.Executor.get_logs">
-<code class="descname">get_logs</code><span class="sig-paren">(</span><em>future</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.executor.Executor.get_logs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pywren.executor.Executor.invoke_with_keys">
-<code class="descname">invoke_with_keys</code><span class="sig-paren">(</span><em>func_key</em>, <em>data_key</em>, <em>output_key</em>, <em>status_key</em>, <em>callset_id</em>, <em>call_id</em>, <em>extra_env</em>, <em>extra_meta</em>, <em>data_byte_range</em>, <em>use_cached_runtime</em>, <em>host_job_meta</em>, <em>job_max_runtime</em>, <em>overwrite_invoke_args=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.executor.Executor.invoke_with_keys" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="pywren.wren.default_executor">
+<code class="descclassname">wren.</code><code class="descname">default_executor</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.wren.default_executor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize and return an executor object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>config</strong> &#8211; Default <cite>None</cite>. This is defaults to <cite>~/.pywren_config</cite></li>
+<li><strong>job_max_runtime</strong> &#8211; Max time per lambda. Default 200</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="pywren.executor.Executor.map">
-<code class="descname">map</code><span class="sig-paren">(</span><em>func</em>, <em>iterdata</em>, <em>extra_env=None</em>, <em>extra_meta=None</em>, <em>invoke_pool_threads=64</em>, <em>data_all_as_one=True</em>, <em>use_cached_runtime=True</em>, <em>overwrite_invoke_args=None</em>, <em>exclude_modules=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.executor.Executor.map" title="Permalink to this definition">¶</a></dt>
-<dd><p># FIXME work with an actual iterable instead of just a list</p>
-<p>data_all_as_one : upload the data as a single object; fewer
-tcp transactions (good) but potentially higher latency for workers (bad)</p>
-<p>use_cached_runtime : if runtime has been cached, use that. When set
-to False, redownloads runtime.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pywren.executor.Executor.put_data">
-<code class="descname">put_data</code><span class="sig-paren">(</span><em>data_key</em>, <em>data_str</em>, <em>callset_id</em>, <em>call_id</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.executor.Executor.put_data" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pywren.executor.Executor.reduce">
-<code class="descname">reduce</code><span class="sig-paren">(</span><em>function</em>, <em>list_of_futures</em>, <em>extra_env=None</em>, <em>extra_meta=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.executor.Executor.reduce" title="Permalink to this definition">¶</a></dt>
-<dd><p>Apply a function across all futures.</p>
-<p># FIXME change to lazy iterator</p>
-</dd></dl>
-
+<code class="descclassname">Executor.</code><code class="descname">map</code><span class="sig-paren">(</span><em>func</em>, <em>iterdata</em>, <em>extra_env=None</em>, <em>extra_meta=None</em>, <em>invoke_pool_threads=64</em>, <em>data_all_as_one=True</em>, <em>use_cached_runtime=True</em>, <em>overwrite_invoke_args=None</em>, <em>exclude_modules=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.executor.Executor.map" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>func</strong> &#8211; the function to map over the data</li>
+<li><strong>iterdata</strong> &#8211; An iterable of input data to the mapped function</li>
+<li><strong>extra_env</strong> &#8211; extra env</li>
+<li><strong>extra_meta</strong> &#8211; extra meta</li>
+<li><strong>invoke_pool_threads</strong> &#8211; </li>
+<li><strong>data_all_as_one</strong> &#8211; upload the data as a single object; fewer tcp transactions (good) but potentially higher latency for workers (bad)</li>
+<li><strong>use_cached_runtime</strong> &#8211; if runtime has been cached, use that. When set to False, redownloads runtime. Default true</li>
+<li><strong>overwrite_invoke_args</strong> &#8211; bar</li>
+<li><strong>exclude_modules</strong> &#8211; foo</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A list with size <cite>len(iterdata)</cite> of futures for each job</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list of futures.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
-<div class="section" id="module-pywren.wait">
-<span id="pywren-wait-module"></span><h2>pywren.wait module<a class="headerlink" href="#module-pywren.wait" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="waiting-for-the-results">
+<h2>Waiting for the results<a class="headerlink" href="#waiting-for-the-results" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="pywren.wait.wait">
 <code class="descclassname">pywren.wait.</code><code class="descname">wait</code><span class="sig-paren">(</span><em>fs</em>, <em>return_when=1</em>, <em>THREADPOOL_SIZE=64</em>, <em>WAIT_DUR_SEC=5</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.wait.wait" title="Permalink to this definition">¶</a></dt>
-<dd><p>this will eventually provide an optimization for checking if a large
-number of futures have completed without too much network traffic
-by exploiting the callset</p>
-<p>From python docs:</p>
-<p>Wait for the Future instances (possibly created by different Executor
-instances) given by fs to complete. Returns a named 2-tuple of
-sets. The first set, named &#8220;done&#8221;, contains the futures that completed
-(finished or were cancelled) before the wait completed. The second
-set, named &#8220;not_done&#8221;, contains uncompleted futures.</p>
-<p><a class="reference external" href="http://pythonhosted.org/futures/#concurrent.futures.wait">http://pythonhosted.org/futures/#concurrent.futures.wait</a></p>
+<dd><p>Wait for the Future instances <cite>fs</cite> to complete. Returns a 2-tuple of
+sets. The first set contains the futures that completed
+(finished or cancelled) before the wait completed. The second
+contains uncompleted futures.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>fs</strong> &#8211; exception type</li>
+<li><strong>return_when</strong> &#8211; One of <cite>ALL_COMPLETED</cite>, <cite>ANY_COMPLETED</cite>, <cite>ALWAYS</cite></li>
+<li><strong>THREADPOOL_SIZE</strong> &#8211; Number of threads to use. Default 64</li>
+<li><strong>WAIT_DUR_SEC</strong> &#8211; Time to sleep before checking futures again.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of futures</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple of list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pywren.wren.get_all_results">
+<code class="descclassname">pywren.wren.</code><code class="descname">get_all_results</code><span class="sig-paren">(</span><em>fs</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.wren.get_all_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take in a list of futures and block until they are repeated,
+call result on each one individually, and return those
+results.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fs</strong> &#8211; a list of futures.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of the results of each futures</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
