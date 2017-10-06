@@ -88,7 +88,7 @@ We can use this <cite>executor</cite> to run <cite>map</cite>, which applies a f
 <li><strong>extra_env</strong> &#8211; Additional environment variables for lambda environment. Default None.</li>
 <li><strong>extra_meta</strong> &#8211; Additional metadata to pass to lambda. Default None.</li>
 <li><strong>invoke_pool_threads</strong> &#8211; Number of threads to use to invoke.</li>
-<li><strong>data_all_as_one</strong> &#8211; upload the data as a single object; fewer tcp transactions (good) but potentially higher latency for workers (bad)</li>
+<li><strong>data_all_as_one</strong> &#8211; upload the data as a single object</li>
 <li><strong>use_cached_runtime</strong> &#8211; Use cached runtime whenever possible. Default true</li>
 <li><strong>overwrite_invoke_args</strong> &#8211; Overwrite other args. Mainly used for testing.</li>
 <li><strong>exclude_modules</strong> &#8211; Explicitly keep these modules from pickled dependencies.</li>
@@ -173,14 +173,24 @@ contains uncompleted futures.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of completed futures, list of uncompleted futures.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><cite>(fs_dones, fs_notdones)</cite> where <cite>fs_dones</cite> is a list of futures that have completed, and <cite>fs_notdones</cite> is a list of futures that have not completed.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple of list</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">2-tuple of lists</p>
 </td>
 </tr>
 </tbody>
 </table>
+<dl class="docutils">
+<dt>Usage </dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">futures</span> <span class="o">=</span> <span class="n">pwex</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dones</span><span class="p">,</span> <span class="n">not_dones</span> <span class="o">=</span> <span class="n">wait</span><span class="p">(</span><span class="n">futures</span><span class="p">,</span> <span class="n">ALL_COMPLETED</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># not_dones should be an empty list.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">dones</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
 </dd></dl>
 
 <p>If you want to get all of the results, you can simply call <cite>get_all_results</cite></p>
