@@ -166,7 +166,7 @@ contains uncompleted futures.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>fs</strong> &#8211; Futures to wait on.</li>
+<li><strong>fs</strong> &#8211; A list of futures.</li>
 <li><strong>return_when</strong> &#8211; One of <cite>ALL_COMPLETED</cite>, <cite>ANY_COMPLETED</cite>, <cite>ALWAYS</cite></li>
 <li><strong>THREADPOOL_SIZE</strong> &#8211; Number of threads to use. Default 64</li>
 <li><strong>WAIT_DUR_SEC</strong> &#8211; Time interval between each check.</li>
@@ -193,7 +193,7 @@ contains uncompleted futures.</p>
 </dl>
 </dd></dl>
 
-<p>If you want to get all of the results, you can simply call <cite>get_all_results</cite></p>
+<p>Alternatively, if you want to wait for everything to finish and then get all of the results, you can simply call <cite>get_all_results</cite></p>
 <dl class="function">
 <dt id="pywren.wren.get_all_results">
 <code class="descname">get_all_results</code><span class="sig-paren">(</span><em>fs</em><span class="sig-paren">)</span><a class="headerlink" href="#pywren.wren.get_all_results" title="Permalink to this definition">¶</a></dt>
@@ -223,6 +223,47 @@ results.</p>
 </dl>
 </dd></dl>
 
+</div>
+<div class="section" id="standalone-mode">
+<h2>Standalone Mode<a class="headerlink" href="#standalone-mode" title="Permalink to this headline">¶</a></h2>
+<p>To run pywren in standalone mode, run</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pywren standalone launch_instances <span class="m">50</span> --pywren_git_branch<span class="o">=</span>master  --spot_price<span class="o">=</span><span class="m">1</span>.0
+</pre></div>
+</div>
+<p>This launches EC2 instances to run pywren. Once the instances are ready, you can run pywren as usual.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywren</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pwex</span> <span class="o">=</span> <span class="n">pywren</span><span class="o">.</span><span class="n">standalone_executor</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">futures</span> <span class="o">=</span> <span class="n">pwex</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you set <cite>max_idle_time</cite> when launching, the ec2 instances will terminate themselves. Otherwise, you need to explicitly shut them down.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pywren standalone terminate_instances
+</pre></div>
+</div>
+</div>
+<div class="section" id="standalone-commands">
+<h2>Standalone Commands<a class="headerlink" href="#standalone-commands" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Launch EC2 instances.</span>
+&gt; pywren standalone launch_instances --help
+
+  Usage: pywren standalone launch_instances <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>NUMBER<span class="o">]</span>
+
+  Options:
+    --max_idle_time INTEGER         instance queue idle <span class="nb">time</span> before checking
+                                    self-termination
+    --idle_terminate_granularity INTEGER
+                                    granularity of billing <span class="o">(</span>sec<span class="o">)</span>
+    --pywren_git_branch TEXT        which branch to use on the stand-alone
+    --pywren_git_commit TEXT        which git to use on the stand-alone
+                                    <span class="o">(</span>superceeds pywren_git_branch
+
+<span class="c1"># List all running EC2 instances.</span>
+&gt; pywren standalone list_instances
+
+<span class="c1"># Shut down all running EC2 instances.</span>
+&gt; pywren standalone terminate_instances
+</pre></div>
+</div>
 </div>
 </div>
 
