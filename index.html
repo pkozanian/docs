@@ -129,7 +129,8 @@ If the future is cancelled before completing then CancelledError will be raised.
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>timeout</strong> &#8211; This method will wait up to timeout seconds if call hasn&#8217;t completed before raising a TimeoutError. If None, wait indefinitely. Default None.</li>
+<li><strong>timeout</strong> &#8211; This method will wait up to timeout seconds before raising
+a TimeoutError if function hasn&#8217;t completed. If None, wait indefinitely. Default None.</li>
 <li><strong>check_only</strong> &#8211; Return None immediately if job is not complete. Default False.</li>
 <li><strong>throw_except</strong> &#8211; Reraise exception if call raised. Default true.</li>
 <li><strong>storage_handler</strong> &#8211; Storage handler to poll cloud storage. Default None.</li>
@@ -173,7 +174,9 @@ contains uncompleted futures.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><cite>(fs_dones, fs_notdones)</cite> where <cite>fs_dones</cite> is a list of futures that have completed, and <cite>fs_notdones</cite> is a list of futures that have not completed.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><cite>(fs_dones, fs_notdones)</cite>
+where <cite>fs_dones</cite> is a list of futures that have completed
+and <cite>fs_notdones</cite> is a list of futures that have not completed.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">2-tuple of lists</p>
@@ -182,7 +185,7 @@ contains uncompleted futures.</p>
 </tbody>
 </table>
 <dl class="docutils">
-<dt>Usage </dt>
+<dt>Usage</dt>
 <dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">futures</span> <span class="o">=</span> <span class="n">pwex</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dones</span><span class="p">,</span> <span class="n">not_dones</span> <span class="o">=</span> <span class="n">wait</span><span class="p">(</span><span class="n">futures</span><span class="p">,</span> <span class="n">ALL_COMPLETED</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># not_dones should be an empty list.</span>
@@ -227,7 +230,7 @@ results.</p>
 <div class="section" id="standalone-mode">
 <h2>Standalone Mode<a class="headerlink" href="#standalone-mode" title="Permalink to this headline">¶</a></h2>
 <p>To run pywren in standalone mode, run</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>pywren standalone launch_instances <span class="m">50</span> --pywren_git_branch<span class="o">=</span>master  --spot_price<span class="o">=</span><span class="m">1</span>.0
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pywren standalone launch_instances <span class="m">50</span> --pywren_git_branch<span class="o">=</span>master
 </pre></div>
 </div>
 <p>This launches EC2 instances to run pywren. Once the instances are ready, you can run pywren as usual.</p>
@@ -255,7 +258,8 @@ results.</p>
                                     granularity of billing <span class="o">(</span>sec<span class="o">)</span>
     --pywren_git_branch TEXT        which branch to use on the stand-alone
     --pywren_git_commit TEXT        which git to use on the stand-alone
-                                    <span class="o">(</span>superceeds pywren_git_branch
+                                    <span class="o">(</span>supercedes pywren_git_branch<span class="o">)</span>
+    --spot_price FLOAT              use spot instances, at this reserve price
 
 <span class="c1"># List all running EC2 instances.</span>
 &gt; pywren standalone list_instances
