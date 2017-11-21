@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Documentation &#8212; pywren 0.3 documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
@@ -24,7 +21,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
    
@@ -34,7 +31,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -56,13 +53,14 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>config</strong> &#8211; Settings passed in here will override those in <cite>pywren_config</cite>. Default None.</li>
-<li><strong>job_max_runtime</strong> &#8211; Max time per lambda. Default 200</li>
+<li><strong>config</strong> – Settings passed in here will override those in <cite>pywren_config</cite>. Default None.</li>
+<li><strong>job_max_runtime</strong> – Max time per lambda. Default 200</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<p>:return <cite>executor</cite> object.</p>
 <dl class="docutils">
 <dt>Usage</dt>
 <dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywren</span>
@@ -73,7 +71,7 @@
 </dl>
 </dd></dl>
 
-<p><cite>default_executor()</cite> reads your <cite>pywren_config</cite> and returns <cite>executor</cite> object that&#8217;s ready to go.
+<p><cite>default_executor()</cite> reads your <cite>pywren_config</cite> and returns <cite>executor</cite> object that’s ready to go.
 We can use this <cite>executor</cite> to run <cite>map</cite>, which applies a function to a list of data in the cloud.</p>
 <dl class="method">
 <dt id="pywren.executor.Executor.map">
@@ -83,15 +81,15 @@ We can use this <cite>executor</cite> to run <cite>map</cite>, which applies a f
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>func</strong> &#8211; the function to map over the data</li>
-<li><strong>iterdata</strong> &#8211; An iterable of input data</li>
-<li><strong>extra_env</strong> &#8211; Additional environment variables for lambda environment. Default None.</li>
-<li><strong>extra_meta</strong> &#8211; Additional metadata to pass to lambda. Default None.</li>
-<li><strong>invoke_pool_threads</strong> &#8211; Number of threads to use to invoke.</li>
-<li><strong>data_all_as_one</strong> &#8211; upload the data as a single object</li>
-<li><strong>use_cached_runtime</strong> &#8211; Use cached runtime whenever possible. Default true</li>
-<li><strong>overwrite_invoke_args</strong> &#8211; Overwrite other args. Mainly used for testing.</li>
-<li><strong>exclude_modules</strong> &#8211; Explicitly keep these modules from pickled dependencies.</li>
+<li><strong>func</strong> – the function to map over the data</li>
+<li><strong>iterdata</strong> – An iterable of input data</li>
+<li><strong>extra_env</strong> – Additional environment variables for lambda environment. Default None.</li>
+<li><strong>extra_meta</strong> – Additional metadata to pass to lambda. Default None.</li>
+<li><strong>invoke_pool_threads</strong> – Number of threads to use to invoke.</li>
+<li><strong>data_all_as_one</strong> – upload the data as a single object. Default True</li>
+<li><strong>use_cached_runtime</strong> – Use cached runtime whenever possible. Default true</li>
+<li><strong>overwrite_invoke_args</strong> – Overwrite other args. Mainly used for testing.</li>
+<li><strong>exclude_modules</strong> – Explicitly keep these modules from pickled dependencies.</li>
 </ul>
 </td>
 </tr>
@@ -129,11 +127,11 @@ If the future is cancelled before completing then CancelledError will be raised.
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>timeout</strong> &#8211; This method will wait up to timeout seconds before raising
-a TimeoutError if function hasn&#8217;t completed. If None, wait indefinitely. Default None.</li>
-<li><strong>check_only</strong> &#8211; Return None immediately if job is not complete. Default False.</li>
-<li><strong>throw_except</strong> &#8211; Reraise exception if call raised. Default true.</li>
-<li><strong>storage_handler</strong> &#8211; Storage handler to poll cloud storage. Default None.</li>
+<li><strong>timeout</strong> – This method will wait up to timeout seconds before raising
+a TimeoutError if function hasn’t completed. If None, wait indefinitely. Default None.</li>
+<li><strong>check_only</strong> – Return None immediately if job is not complete. Default False.</li>
+<li><strong>throw_except</strong> – Reraise exception if call raised. Default true.</li>
+<li><strong>storage_handler</strong> – Storage handler to poll cloud storage. Default None.</li>
 </ul>
 </td>
 </tr>
@@ -141,8 +139,8 @@ a TimeoutError if function hasn&#8217;t completed. If None, wait indefinitely. D
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
-<li><strong>CancelledError</strong> &#8211; If the job is cancelled before completed.</li>
-<li><strong>TimeoutError</strong> &#8211; If job is not complete after <cite>timeout</cite> seconds.</li>
+<li><strong>CancelledError</strong> – If the job is cancelled before completed.</li>
+<li><strong>TimeoutError</strong> – If job is not complete after <cite>timeout</cite> seconds.</li>
 </ul>
 </td>
 </tr>
@@ -167,10 +165,10 @@ contains uncompleted futures.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>fs</strong> &#8211; A list of futures.</li>
-<li><strong>return_when</strong> &#8211; One of <cite>ALL_COMPLETED</cite>, <cite>ANY_COMPLETED</cite>, <cite>ALWAYS</cite></li>
-<li><strong>THREADPOOL_SIZE</strong> &#8211; Number of threads to use. Default 64</li>
-<li><strong>WAIT_DUR_SEC</strong> &#8211; Time interval between each check.</li>
+<li><strong>fs</strong> – A list of futures.</li>
+<li><strong>return_when</strong> – One of <cite>ALL_COMPLETED</cite>, <cite>ANY_COMPLETED</cite>, <cite>ALWAYS</cite></li>
+<li><strong>THREADPOOL_SIZE</strong> – Number of threads to use. Default 64</li>
+<li><strong>WAIT_DUR_SEC</strong> – Time interval between each check.</li>
 </ul>
 </td>
 </tr>
@@ -207,7 +205,7 @@ results.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fs</strong> &#8211; a list of futures.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fs</strong> – a list of futures.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of the results of each futures</td>
 </tr>
@@ -230,10 +228,10 @@ results.</p>
 <div class="section" id="standalone-mode">
 <h2>Standalone Mode<a class="headerlink" href="#standalone-mode" title="Permalink to this headline">¶</a></h2>
 <p>To run pywren in standalone mode, run</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>pywren standalone launch_instances <span class="m">50</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pywren standalone launch_instances <span class="m">2</span>
 </pre></div>
 </div>
-<p>This launches EC2 instances to run pywren. Once the instances are ready, you can run pywren as usual.</p>
+<p>This launches EC2 instances to run pywren. Once the instances are ready, you can run pywren as usual. The instance type is set in the <cite>pywren_config</cite> file, under the <cite>standalone</cite> key. By default, the instance type is set to <cite>m4.4xlarge</cite>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywren</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pwex</span> <span class="o">=</span> <span class="n">pywren</span><span class="o">.</span><span class="n">standalone_executor</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">futures</span> <span class="o">=</span> <span class="n">pwex</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
@@ -293,7 +291,6 @@ results.</p>
   </ul></li>
 </ul>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -302,7 +299,7 @@ results.</p>
       &copy;2017, Eric Jonas, Qifan Pu, Shivaram Venkataraman, Vaishaal Shankar, Allan Peng.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
